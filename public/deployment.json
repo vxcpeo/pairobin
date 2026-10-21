@@ -1,0 +1,1248 @@
+{
+  "generatedAt": "2026-10-09T00:00:01.565Z",
+  "network": "ganache",
+  "chainId": 1337,
+  "rpcUrl": "http://127.0.0.1:8545",
+  "contract": {
+    "name": "KudorixPayment",
+    "address": "0x85cd1F9550CdF662944bEc3E58021f8dbE6fE878",
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "initialHoldDepositWei",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [],
+        "name": "CampaignExists",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "CampaignInactive",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "DirectDepositDisabled",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "EnforcedPause",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "ExactDepositRequired",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "ExpectedPause",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "HoldExists",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "HoldExpired",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "HoldNotExpired",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InsufficientPool",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidAddress",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidAmount",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidCampaign",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidConfiguration",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidHandle",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidHoldId",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidPrice",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidReceipt",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidState",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnableInvalidOwner",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "OwnableUnauthorizedAccount",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "ReceiptAlreadyUsed",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "ReentrancyGuardReentrantCall",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "TransferFailed",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "UnauthorizedPayer",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "UnauthorizedVerifier",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "UnknownHold",
+        "type": "error"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "recipientXHandleHash",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "rewardBps",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "minPaymentCents",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "maxPaymentCents",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "holdDuration",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "settleWindow",
+            "type": "uint256"
+          }
+        ],
+        "name": "CampaignCreated",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ],
+        "name": "CampaignStatusChanged",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "payer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "deposit",
+            "type": "uint256"
+          }
+        ],
+        "name": "HoldCancelled",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "payer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amountCents",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "expiresAt",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "deposit",
+            "type": "uint256"
+          }
+        ],
+        "name": "HoldCreated",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "deposit",
+            "type": "uint256"
+          }
+        ],
+        "name": "HoldDepositUpdated",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "payer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "payoutWei",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "deposit",
+            "type": "uint256"
+          }
+        ],
+        "name": "HoldSettled",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "payer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "deposit",
+            "type": "uint256"
+          }
+        ],
+        "name": "HoldWindowExpired",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "Paused",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "funder",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "PoolFunded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "PoolWithdrawn",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "reasonHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "ReceiptRejected",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "ReceiptSubmitted",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "paidCents",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "rewardCents",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "nativeUsdCents",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "payoutWei",
+            "type": "uint256"
+          }
+        ],
+        "name": "ReceiptVerified",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "Unpaused",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "bool",
+            "name": "enabled",
+            "type": "bool"
+          }
+        ],
+        "name": "VerifierUpdated",
+        "type": "event"
+      },
+      {
+        "inputs": [],
+        "name": "BPS",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "MAX_REWARD_BPS",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "PRICE_SCALE",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "name": "campaignExists",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "cancelHold",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "recipientXHandleHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rewardBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minPaymentCents",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPaymentCents",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "holdDuration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "settleWindow",
+            "type": "uint256"
+          }
+        ],
+        "name": "createCampaign",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountCents",
+            "type": "uint256"
+          }
+        ],
+        "name": "createHold",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "expireHold",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "fundPool",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "getCampaign",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "recipientXHandleHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "rewardBps",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "minPaymentCents",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "maxPaymentCents",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "holdDuration",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "settleWindow",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "poolBalance",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "reservedBalance",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "active",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct KudorixPayment.Campaign",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "getHold",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "campaignId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "address",
+                "name": "payer",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amountCents",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "createdAt",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "expiresAt",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "settleDeadline",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "deposit",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "receiptHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint256",
+                "name": "paidCents",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "rewardCents",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "payoutWei",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nativeUsdCents",
+                "type": "uint256"
+              },
+              {
+                "internalType": "enum KudorixPayment.HoldState",
+                "name": "state",
+                "type": "uint8"
+              }
+            ],
+            "internalType": "struct KudorixPayment.Hold",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "receiptLink",
+            "type": "string"
+          }
+        ],
+        "name": "hashReceiptLink",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "canonicalHandle",
+            "type": "string"
+          }
+        ],
+        "name": "hashXHandle",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "holdDepositWei",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "pause",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "paused",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "name": "receiptHold",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "reasonHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "rejectReceipt",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ],
+        "name": "setCampaignActive",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "deposit",
+            "type": "uint256"
+          }
+        ],
+        "name": "setHoldDeposit",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "enabled",
+            "type": "bool"
+          }
+        ],
+        "name": "setVerifier",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "settleVerified",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "submitReceipt",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "unpause",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "verifiers",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "holdId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "paidCents",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nativeUsdCents",
+            "type": "uint256"
+          }
+        ],
+        "name": "verifyReceipt",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "campaignId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address payable",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "withdrawPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "stateMutability": "payable",
+        "type": "receive"
+      }
+    ]
+  },
+  "owner": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+  "verifier": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+  "holdDepositWei": "10000000000000000",
+  "campaigns": [
+    {
+      "handle": "@jack",
+      "campaignId": "0xb05dc7fb94acc745a45791c6ff0881e9205200de22f51e16b9f27f5274c97a3d",
+      "recipientXHandleHash": "0x356ec46d53d3e29cedfa36412a209942f0c835c47fa2899f289f50ba1ccf7ac3",
+      "rewardBps": 1000,
+      "minPaymentCents": 100,
+      "maxPaymentCents": 1000000,
+      "holdDuration": 600,
+      "settleWindow": 86400,
+      "poolBalanceWei": "10000000000000000000"
+    },
+    {
+      "handle": "@balajis",
+      "campaignId": "0xead83b182b790359f97a0992d6d137575604689fe2816cfbf379afdf4186d1f6",
+      "recipientXHandleHash": "0xf183f76d40b84a5df494eb262aa49d1c386a1f6d2862864d1b28b71492a19b3e",
+      "rewardBps": 1000,
+      "minPaymentCents": 100,
+      "maxPaymentCents": 1000000,
+      "holdDuration": 600,
+      "settleWindow": 86400,
+      "poolBalanceWei": "10000000000000000000"
+    },
+    {
+      "handle": "@sama",
+      "campaignId": "0xf013719b4ea5e0808999323d2e59f16fd9557cfcda0f65410813ad15ec883d14",
+      "recipientXHandleHash": "0xe374fc100d45bdc03086cab5bf0aa31841478572175caf01c72d8ff10d529d09",
+      "rewardBps": 1000,
+      "minPaymentCents": 100,
+      "maxPaymentCents": 1000000,
+      "holdDuration": 600,
+      "settleWindow": 86400,
+      "poolBalanceWei": "10000000000000000000"
+    },
+    {
+      "handle": "@naval",
+      "campaignId": "0x396237f445e72632b557f8f7d4d63418666c576d64e5f7bd27f7a1c603e0870f",
+      "recipientXHandleHash": "0xc76d9c0b7c0e30ac4edbea9f8822e613e4f1804ae9345d3a76a5ccfde9ff0105",
+      "rewardBps": 1000,
+      "minPaymentCents": 100,
+      "maxPaymentCents": 1000000,
+      "holdDuration": 600,
+      "settleWindow": 86400,
+      "poolBalanceWei": "10000000000000000000"
+    },
+    {
+      "handle": "@paulg",
+      "campaignId": "0x27df45acc7916ab0ed2a32bfb25251963583695b6f56d91dbf737035de0c71e8",
+      "recipientXHandleHash": "0xb562988f199158ffc85dc4afbee54139ca38da469919a2114b535940dd28bfe2",
+      "rewardBps": 1000,
+      "minPaymentCents": 100,
+      "maxPaymentCents": 1000000,
+      "holdDuration": 600,
+      "settleWindow": 86400,
+      "poolBalanceWei": "10000000000000000000"
+    }
+  ]
+}
