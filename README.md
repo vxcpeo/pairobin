@@ -1,6 +1,6 @@
-# Kudorix website
+# Remitia website
 
-This Vue/Vite application provides the Kudorix interface for supporting X
+This Vue/Vite application provides the Remitia interface for supporting X
 accounts through X Money receipts and EVM native-currency reward pools.
 
 ## Wallets
@@ -12,7 +12,7 @@ handle X Money dollars.
 
 Copy `.env.example` to `.env.local` and set the EVM chain and API origin before
 testing real connections. X OAuth, hold creation, receipt verification, and
-settlement require the Kudorix backend; the local UI keeps submitted payments
+settlement require the Remitia backend; the local UI keeps submitted payments
 in browser storage when that backend is unavailable.
 
 For the local Ganache integration, run Ganache on `http://127.0.0.1:8545`, set
@@ -26,4 +26,4 @@ the same flow remains a browser-storage demonstration.
 
 English is the default locale. Simplified Chinese, Japanese, and Korean are
 available from the header language selector. The choice is stored in browser
-local storage under `kudorix.locale`.
+local storage under `remitia.locale`.

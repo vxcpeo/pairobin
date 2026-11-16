@@ -4,7 +4,7 @@
   "chainId": 1337,
   "rpcUrl": "http://127.0.0.1:8545",
   "contract": {
-    "name": "KudorixPayment",
+    "name": "RemitiaPayment",
     "address": "0x85cd1F9550CdF662944bEc3E58021f8dbE6fE878",
     "abi": [
       {
@@ -792,7 +792,7 @@
                 "type": "bool"
               }
             ],
-            "internalType": "struct KudorixPayment.Campaign",
+            "internalType": "struct RemitiaPayment.Campaign",
             "name": "",
             "type": "tuple"
           }
@@ -873,12 +873,12 @@
                 "type": "uint256"
               },
               {
-                "internalType": "enum KudorixPayment.HoldState",
+                "internalType": "enum RemitiaPayment.HoldState",
                 "name": "state",
                 "type": "uint8"
               }
             ],
-            "internalType": "struct KudorixPayment.Hold",
+            "internalType": "struct RemitiaPayment.Hold",
             "name": "",
             "type": "tuple"
           }

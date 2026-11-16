@@ -73,7 +73,7 @@ function chainFor(manifest) {
   const rpcUrl = rpcUrlFor(manifest);
   return {
     id: manifest.chainId,
-    name: manifest.network || (manifest.chainId === 1337 ? "Ganache Local" : "Kudorix EVM"),
+    name: manifest.network || (manifest.chainId === 1337 ? "Ganache Local" : "Remitia EVM"),
     nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
     rpcUrls: { default: { http: [rpcUrl] } },
   };

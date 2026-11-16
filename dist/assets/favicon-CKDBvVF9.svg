@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Remitia">
+  <title>Remitia</title>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff74b9"/>
+      <stop offset="1" stop-color="#e6006f"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" ry="14" fill="url(#tile)"/>
+  <path d="M16 14 H36 C43.2 14 47 18.4 47 24 C47 29.6 43.2 34 36 34 H25 V50 H16 Z M25 27 H34 C38 27 40 25.6 40 24 C40 22.4 38 21 34 21 H25 Z M43 27 L50 50 H41.5 L33 33 Z" fill="#ffffff" fill-rule="nonzero" transform="translate(-4.667 -3.556) scale(1.1111)"/>
+</svg>

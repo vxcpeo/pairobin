@@ -133,7 +133,7 @@ export async function connectWalletConnect() {
     if (!projectId) { const error = new Error("VITE_WALLETCONNECT_PROJECT_ID is not configured."); error.code = "WALLETCONNECT_NOT_CONFIGURED"; throw error; }
     if (!walletConnectInstance) walletConnectInstance = await EthereumProvider.init({
       projectId, chains: [chainIdDecimal], showQrModal: true,
-      metadata: { name: "Kudorix", description: "Back X accounts with verified X Money receipts", url: env.VITE_APP_URL || window.location.origin, icons: [] },
+      metadata: { name: "Remitia", description: "Back X accounts with verified X Money receipts", url: env.VITE_APP_URL || window.location.origin, icons: [] },
     });
     if (!walletConnectInstance.session) await walletConnectInstance.connect();
     const accounts = await walletConnectInstance.request({ method: "eth_accounts" });
